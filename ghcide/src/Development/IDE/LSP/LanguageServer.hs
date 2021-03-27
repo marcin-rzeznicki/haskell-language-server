@@ -23,7 +23,7 @@ import           Data.Aeson                            (Value)
 import           Data.Maybe
 import qualified Data.Set                              as Set
 import qualified Data.Text                             as T
-import qualified Development.IDE.GHC.Util              as Ghcide
+
 import           Development.IDE.LSP.Server
 import           Development.IDE.Session               (runWithDb)
 import           Ide.Types                             (traceWithSpan)

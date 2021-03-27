@@ -45,13 +45,12 @@ import           UnliftIO.Exception           (catchAny)
 
 -- | Map a set of plugins to the underlying ghcide engine.
 asGhcIdePlugin :: Config -> IdePlugins IdeState -> Plugin Config
-asGhcIdePlugin defaultConfig mp =
+asGhcIdePlugin defaultConfig (IdePlugins ls) =
     mkPlugin rulesPlugins HLS.pluginRules <>
     mkPlugin executeCommandPlugins HLS.pluginCommands <>
     mkPlugin (extensiblePlugins defaultConfig) HLS.pluginHandlers <>
     mkPlugin (extensibleNotificationPlugins defaultConfig) HLS.pluginNotificationHandlers
     where
-        ls = Map.toList (ipMap mp)
 
         mkPlugin :: ([(PluginId, b)] -> Plugin Config) -> (PluginDescriptor IdeState -> b) -> Plugin Config
         mkPlugin maker selector =
